@@ -1,0 +1,6 @@
+
+.card {
+    @apply bg-white px-6 py-8;
+    @apply rounded shadow-md;
+    @apply text-black w-full;
+}

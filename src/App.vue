@@ -1,28 +1,41 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div id="app" class="h-screen overflow-hidden flex flex-col items-center justify-center">
+    <div id="nav">
+      <router-link to="/">Home</router-link> |
+      <router-link to="/about">About</router-link> |
+      <router-link :to="{ name: 'Login' }" v-if="!user">Login</router-link>
+      <a @click="logout" v-else>Logout</a>
+    </div>
+    <router-view/>
   </div>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Auth } from '@/firebase/auth';
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  data() {
+    return {
+      user: null,
+    };
+  },
+  created() {
+    Auth.onAuthStateChanged((user) => {
+      if (user) {
+        this.user = Auth.currentUser;
+      } else {
+        this.user = null;
+      }
+    });
+  },
+  methods: {
+    logout() {
+      Auth.signOut().then(() => {
+        Auth.onAuthStateChanged(() => {
+          this.$router.push('/');      
+        });
+      });
+    },
+  },
+};
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style src="./assets/css/index.css">
