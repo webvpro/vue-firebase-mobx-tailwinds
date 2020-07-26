@@ -1,6 +1,6 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 
-@import './componets/card.css';
+@import './componets/index.css';
 
 @import "tailwindcss/utilities";

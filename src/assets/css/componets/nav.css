@@ -1,0 +1,12 @@
+
+nav {
+    @apply bg-gray-900 pt-2 pb-1;
+    @apply px-1 mt-0 h-auto;
+    @apply fixed w-full z-20 top-0;
+}
+.nav-container {
+    @apply flex flex-wrap items-center;
+}
+.nav-item {
+    @apply flex flex-shrink justify-center text-white;
+}

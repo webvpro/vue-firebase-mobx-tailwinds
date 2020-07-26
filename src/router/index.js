@@ -46,6 +46,7 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title || 'stormbringer.io';
   if (to.matched.some(record => record.meta.auth)) {
       Auth.onAuthStateChanged(() => {
           const user = Auth.currentUser

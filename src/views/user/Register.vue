@@ -25,14 +25,6 @@
                     v-model="password"
                     placeholder="Password"
                     required />
-                <input 
-                    type="password"
-                    class="block border border-gray-300 w-full p-3 rounded mb-4"
-                    name="confirm_password"
-                    v-model="confirm_password"
-                    placeholder="Confirm Password"
-                    required />
-
                 <button
                     type="submit"
                     class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-800 focus:outline-none my-1"
@@ -62,7 +54,7 @@
 <script>
     import { Auth } from '../../firebase/auth';
     import { db } from '../../firebase/db';
-
+    
     export default {
     name: 'register',
     data() {
@@ -85,9 +77,12 @@
                 });
                 return cred
             })
-            .then((created) => {
-                created.user.sendEmailVerification().then(() => {
-                this.$router.push('/profile');
+            .then(() => {
+                Auth.currentUser.sendEmailVerification({
+                    url: 'https://stormbringer.io/verified',
+                    dynamicLinkDomain: 'stormbringer.io'
+                }).then(() => {
+                    this.$router.push('/unverified');
                 });
             }).catch((error) => {
                 this.errors.push(error.message);
@@ -101,6 +96,5 @@
                 this.$refs.form.reportValidity();
             }
         }
-    },
-    };
+    }};
 </script>

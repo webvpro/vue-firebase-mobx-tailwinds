@@ -36,7 +36,7 @@
             <div class="text-gray-800 mt-6">
                 Need an account? 
                 <a class="no-underline border-b border-blue text-blue hover:underline" href="../register">
-                    Registers
+                    Sign Up Here
                 </a>.
             </div>
         </div>
