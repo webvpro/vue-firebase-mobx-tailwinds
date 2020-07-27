@@ -1,6 +1,5 @@
 <template>
-    <div class="bg-gray-300 min-h-screen w-screen flex flex-col">
-        <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
+        <div class="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center">
             <form ref="form" @submit.prevent="submit"
                 class="card"
             >
@@ -37,7 +36,6 @@
                 <router-link to="/register" tag="button" class="btn btn--primary w-64">Sign up</router-link>
             </div>
         </div>
-    </div>
 </template>
 
 <script>
