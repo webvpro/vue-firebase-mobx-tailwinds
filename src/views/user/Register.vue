@@ -42,10 +42,7 @@
             </form>
 
             <div class="text-gray-800 mt-6">
-                Already have an account? 
-                <a class="no-underline border-b border-blue text-blue hover:underline" href="../login">
-                    Log in
-                </a>.
+                <router-link to="/login" tag="button" class="btn btn--primary w-64">Sign In</router-link>
             </div>
         </div>
     </div>

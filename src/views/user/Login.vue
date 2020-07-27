@@ -28,16 +28,13 @@
                 
                 <button
                     type="submit"
-                    class="w-full text-center py-3 rounded bg-green-500 text-white hover:bg-green-800 focus:outline-none my-1"
+                    class="btn btn--action w-full focus:outline-none"
                 >Login</button>
 
             </form>
 
             <div class="text-gray-800 mt-6">
-                Need an account? 
-                <a class="no-underline border-b border-blue text-blue hover:underline" href="../register">
-                    Sign Up Here
-                </a>.
+                <router-link to="/register" tag="button" class="btn btn--primary w-64">Sign up</router-link>
             </div>
         </div>
     </div>
