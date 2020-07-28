@@ -1,14 +1,18 @@
 <template>
-  <div class="relative">
-    <button @click="isOpen = !isOpen" class="relative z-10 block rounded-full h-12 w-12 flex items-center justify-center border-2 border-indigo-900 p-1 bg-blue-300 mr-2 focus:outline-none focus:border-white">
+  <div class="nav__profile-container">
+    <button @click="isOpen = !isOpen" class="nav__profile-container__btn focus:outline-none focus:border-white">
         <UserCircleIcon size="4x" class="text-indigo-900" />
     </button>
-    <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="fixed inset-0 h-full w-full bg-black opacity-50 cursor-default"></button>
-    <div v-if="isOpen" class="absolute right-0 mt-2 py-2 w-48 bg-white rounded-lg shadow-xl">
-      <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Account settings</a>
-      <a href="#" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Support</a>
-      <a href="#" @click="logout" class="block px-4 py-2 text-gray-800 hover:bg-indigo-500 hover:text-white">Sign out</a>
-    </div>
+    <button v-if="isOpen" @click="isOpen = false" tabindex="-1" class="nav__profile-container__btn-mask"></button>
+    <transition name='slide'>
+      <div v-if="isOpen"  v-bind:class="{  
+        'nav__profile-container__dropdown': true 
+      }">
+        <a href="#" class="nav__profile-container__dropdown__item">Account settings</a>
+        <a href="#" class="nav__profile-container__dropdown__item">Support</a>
+        <a href="#" @click="logout" class="nav__profile-container__dropdown__item">Sign out</a>
+      </div>
+    </transition>
   </div>
 </template>
 
@@ -49,3 +53,37 @@ export default {
   },
 }
 </script>
+
+<style>
+  .nav__profile-container {
+    @apply relative;
+  }
+  .nav__profile-container__btn {
+    @apply relative z-10 block;
+    @apply rounded-full h-12 w-12;
+    @apply flex items-center justify-center;
+    @apply border-2 border-indigo-900;
+    @apply p-1 bg-blue-300 mr-2;
+  }
+  .nav__profile-container__btn-mask {
+    @apply fixed inset-0 h-full;
+    @apply w-full bg-black opacity-50;
+    @apply cursor-default;
+  }
+  .nav__profile-container__dropdown {
+    @apply absolute right-0 mt-2 py-2;
+    @apply w-48 bg-white rounded-lg shadow-xl;
+    transform-origin: top;
+    transition: transform .4s ease-in-out;
+  }
+  
+  .nav__profile-container__dropdown__item {
+    @apply block px-4 py-2 text-gray-800;
+  }
+  .nav__profile-container__dropdown__item:hover {
+    @apply bg-indigo-500 text-white;
+  }
+  .slide-enter, .slide-leave-to{
+      transform: scaleY(0);
+  }
+</style>
