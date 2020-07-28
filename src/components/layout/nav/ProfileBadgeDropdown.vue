@@ -8,8 +8,8 @@
       <div v-if="isOpen"  v-bind:class="{  
         'nav__profile-container__dropdown': true 
       }">
-        <a href="#" class="nav__profile-container__dropdown__item">Account settings</a>
-        <a href="#" class="nav__profile-container__dropdown__item">Support</a>
+        <router-link to="/dashboard" @click="isOpen = false" class="nav__profile-container__dropdown__item">Dashboard</router-link>
+        <router-link to="/about"  @click="isOpen = false" class="nav__profile-container__dropdown__item">Profile</router-link>
         <a href="#" @click="logout" class="nav__profile-container__dropdown__item">Sign out</a>
       </div>
     </transition>
@@ -41,6 +41,11 @@ export default {
     this.$once('hook:beforeDestroy', () => {
       document.removeEventListener('keydown', handleEscape)
     })
+  },
+  watch: {
+    '$route' () {
+      this.isOpen = false;
+    }
   },
   methods: {
     logout() {
